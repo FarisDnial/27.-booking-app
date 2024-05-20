@@ -10,10 +10,10 @@ export default function Dashboard() {
     return (
         <>
             <Row>
-                <Col sm={2} style={{ width: "22rem" }}>
+                <Col sm={2}>
                     <Sidebar />
                 </Col>
-                <Col sm={10} style={{ width: "128rem" }}>
+                <Col sm={10}>
                     <Row className="py-5 px-5 justify-content-center align-items-center">
                         <AboutUs navigateToBookingPage={navigateToBookingPage} />
                         <div className=" py-5 flex justify-end">
