@@ -27,7 +27,7 @@ export default function Navbar() {
 
                         <img
                             className="h-20 w-auto"
-                            src="https://firebasestorage.googleapis.com/v0/b/twitter-app-8a21a.appspot.com/o/posts%2FLensify3.jpg?alt=media&token=e72aaf66-342e-486d-849a-a936764f01e2"
+                            src="src/assets/Lensify3.png"
                             alt=""
 
                         />
