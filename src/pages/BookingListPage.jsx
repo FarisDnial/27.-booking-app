@@ -21,10 +21,10 @@ export default function BookingListPage() {
     return (
         <>
             <Row>
-                <Col sm={2} style={{ width: "20rem" }}>
+                <Col sm={2}>
                     <Sidebar />
                 </Col>
-                <Col sm={10} style={{ width: "130rem" }}>
+                <Col sm={10}>
                     <Row className="py-5 px-5 justify-content-center align-items-center">
                         <Card color="white" variant="gradient" className="w-full max-w-[20rem] p-8 border border-white shadow-lg">
                             <CardBody>

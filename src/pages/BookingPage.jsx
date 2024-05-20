@@ -13,10 +13,10 @@ export default function BookingPage() {
     return (
         <>
             <Row>
-                <Col sm={2} style={{ width: "20rem" }}>
+                <Col sm={2}>
                     <Sidebar />
                 </Col>
-                <Col sm={10} style={{ width: "130rem" }}>
+                <Col sm={10}>
                     <Row className="py-5 px-5 justify-content-center align-items-center">
                         <BookingPageHeader />
                         <div className="mt-4 flex justify-end">
