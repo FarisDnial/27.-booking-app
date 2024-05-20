@@ -1,43 +1,56 @@
 import { Col, Row } from "react-bootstrap";
-import Sidebar from "../components/Dashboard/Sidebar";
-import BookingList from "../components/Booking/BookingList";
+import Sidebar from "../components/Layout/Sidebar";
+import BookCard from "../components/Booking/BookCard";
 import { Typography } from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
-import { fetchBookingsByUser } from "../features/books/bookingSlice"
+import { Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 export default function BookingPage() {
 
-    const dispatch = useDispatch();
-    const bookings = useSelector((state) => state.bookings.bookings);
-    // const loading = useSelector((state) => state.bookings.loading);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem("authToken");
-        if (token) {
-            const decodeToken = jwtDecode(token);
-            const userId = decodeToken.id;
-            dispatch(fetchBookingsByUser(userId));
-        }
-    }, [dispatch]);
-
+    const navigateToBookingListPage = () => navigate("/bookinglist")
     return (
         <>
             <Row>
-                <Col sm={2}>
+                <Col sm={2} style={{ width: "20rem" }}>
                     <Sidebar />
                 </Col>
-                <Col sm={10} >
+                <Col sm={10} style={{ width: "130rem" }}>
                     <Row className="py-5 px-5 justify-content-center align-items-center">
-                        <Typography className="py-5" variant="h1">Your Booking Session List</Typography>
-                        <BookingList
-                            bookings={bookings}
-                        />
-
+                        <BookingPageHeader />
+                        <div className="mt-4 flex justify-end">
+                            <Button size="lg" className="bg-black text-white" onPress={navigateToBookingListPage}>Show My Booking List</Button>
+                        </div>
+                        <BookCard />
                     </Row>
                 </Col>
             </Row>
+
         </>
+    );
+}
+
+
+export function BookingPageHeader() {
+    return (
+        <figure className="relative h-96 w-full">
+            <img
+                className="h-full w-full rounded-xl object-cover object-center"
+                src="https://www.lukas-petereit.com/wp-content/uploads/2017/10/Rakotzbr%C3%BCcke-Bridge-Rakotz-Kromlau-Lake-Sun-Sunrise-Landscape-Reflection-Germany-Saxony-Travel-Photography-Nature-Photo-Spreewald-2.jpg"
+                alt="nature image"
+            />
+            <figcaption className="absolute bottom-8 left-2/4 flex w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl border border-white bg-white/75 py-4 px-6 shadow-lg shadow-black/5 saturate-200 backdrop-blur-sm">
+                <div>
+                    <Typography variant="h3" color="blue-gray">
+                        Book Your Session with Us
+                    </Typography>
+                    <Typography color="gray" className="mt-2 font-normal" variant="h5">
+                        Choose from our range of services, select a date and time, and provide any details. Our professional photographers are ready to bring your vision to life. Secure your spot today!
+                    </Typography>
+                </div>
+
+            </figcaption>
+        </figure>
     );
 }

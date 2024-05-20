@@ -1,12 +1,17 @@
-import { IconButton, Tooltip } from "@material-tailwind/react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 import UpdateModal from "./UpdateModal";
 import DeleteModal from "./DeleteModal";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
+
 
 export default function BookingTableList({ bookings }) {
+    const { currentUser } = useContext(AuthContext);
+    const userId = currentUser.uid;
+
     return (
         <>
-            <Table aria-label="Example static collection table">
+            <Table aria-label="Example static collection table " className="text-black">
                 <TableHeader>
                     <TableColumn style={{ fontSize: '17px' }}>Service</TableColumn>
                     <TableColumn style={{ fontSize: '17px' }}>Description</TableColumn>
@@ -24,24 +29,22 @@ export default function BookingTableList({ bookings }) {
                             <TableCell style={{ fontSize: '17px' }}>{booking.time}</TableCell>
                             <TableCell style={{ fontSize: '17px', textAlign: 'center' }}>{booking.phone_number}</TableCell>
                             <TableCell style={{ fontSize: '17px', textAlign: 'center' }}>
-                                <Tooltip content="Delete Booking">
-                                    <IconButton variant="text">
-                                        <DeleteModal bookingsId={bookings.id} />
-                                    </IconButton>
-                                </Tooltip>
-                                <Tooltip content="Edit Booking">
-                                    <IconButton variant="text">
-                                        <UpdateModal
-                                            userId={booking.user_id}
-                                            bookingsId={booking.id}
-                                            service={booking.service}
-                                            description={booking.description}
-                                            date={booking.date}
-                                            time={booking.time}
-                                            phoneNumber={booking.phone_number}
-                                        />
-                                    </IconButton>
-                                </Tooltip>
+                                <div className="flex">
+                                    <DeleteModal
+                                        userId={userId}
+                                        bookingsId={booking.id}
+                                    />
+                                    <UpdateModal
+                                        userId={userId}
+                                        bookingsId={booking.id}
+                                        service={booking.service}
+                                        description={booking.description}
+                                        date={booking.date}
+                                        time={booking.time}
+                                        phoneNumber={booking.phone_number}
+                                    />
+                                </div>
+
                             </TableCell>
                         </TableRow>
                     ))}

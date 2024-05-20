@@ -1,38 +1,35 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Checkbox, Input, Link } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import useLocalStorage from "use-local-storage";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../AuthProvider";
 
 export default function LoginModal({ className }) {
-    const url = "https://279aa7f6-f772-4f73-a6e0-19eae612c706-00-q1e0ghxworay.kirk.replit.dev";
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [authToken, setAuthToken] = useLocalStorage("authToken", "");
 
     const navigate = useNavigate();
+    const auth = getAuth();
+    const { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
-        if (authToken) {
-            navigate("/dashboard")
+        if (currentUser) {
+            navigate("/aboutus")
         }
-    }, [authToken, navigate])
+    }, [currentUser, navigate])
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${url}/login`, { username, password });
-            if (res.data && res.data.auth === true && res.data.token) {
-                setAuthToken(res.data.token); // save token to localStorage
-                console.log("Login was succesful, token saved")
-            }
+            await signInWithEmailAndPassword(auth, username, password);
         } catch (error) {
             console.error(error);
         }
     };
+
 
     return (
         <>

@@ -1,24 +1,41 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Tooltip } from "@nextui-org/react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { deleteBooking } from "../../features/books/bookingSlice";
 
-
-
-
-export default function App({ bookingsId }) {
+export default function DeleteModal({ userId, bookingsId }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const dispatch = useDispatch();
 
     const handleDeleteBooking = () => {
-        dispatch(deleteBooking({ bookingsId }));
+        dispatch(deleteBooking({ userId, bookingsId }));
     }
 
     return (
         <>
-            <Button onPress={onOpen} className="border-white text-danger" variant="bordered" radius="sm" startContent={<FaRegTrashCan style={{ fontSize: '18px' }} />}>
-            </Button>
+            <Tooltip content="Delete Booking" delay={0} closeDelay={0} color="danger" motionProps={{
+                variants: {
+                    exit: {
+                        opacity: 0,
+                        transition: {
+                            duration: 0.1,
+                            ease: "easeIn",
+                        }
+                    },
+                    enter: {
+                        opacity: 1,
+                        transition: {
+                            duration: 0.15,
+                            ease: "easeOut",
+                        }
+                    },
+                },
+            }}>
+                <Button onPress={onOpen} className="border-white text-danger" variant="bordered" radius="sm" startContent={<FaRegTrashCan style={{ fontSize: '18px' }} />}>
+                </Button>
+            </Tooltip>
+
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (

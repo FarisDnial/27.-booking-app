@@ -1,9 +1,9 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Textarea } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createBooking } from "../../features/books/bookingSlice";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthProvider";
 
 export default function BookingModal({ className, selectedService }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -11,15 +11,17 @@ export default function BookingModal({ className, selectedService }) {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const { currentUser } = useContext(AuthContext);
+    const userId = currentUser.uid;
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
     const service = selectedService;
 
-    const navigateToBookingPage = () => navigate("/booking");
+    // const navigateToBookingPage = () => navigate("/booking");
 
     const handleNewBooking = () => {
-        dispatch(createBooking({ service, description, date, time, phoneNumber }));
+        dispatch(createBooking({ userId, service, description, date, time, phoneNumber }));
         setDescription("");
         setDate("");
         setTime("");
@@ -34,7 +36,7 @@ export default function BookingModal({ className, selectedService }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
-                size="4xl"
+                size="2xl"
                 backdrop="opaque"
                 classNames={{
                     backdrop: "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20"
@@ -45,7 +47,7 @@ export default function BookingModal({ className, selectedService }) {
                         <>
                             <ModalHeader className="flex flex-col gap-1 px-5" style={{ fontSize: '30px' }}>{selectedService} Services</ModalHeader>
                             <ModalBody>
-                                <div className="flex w-full flex-wrap items-end px-4 py-2 gap-4 mb-3">
+                                <div className="flex w-full flex-wrap items-end px-4 py-2 gap-4">
                                     <Input
                                         type="text"
                                         label="Selected Services"
@@ -54,9 +56,11 @@ export default function BookingModal({ className, selectedService }) {
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         isReadOnly
                                     />
+                                </div>
+                                <div className="flex w-full flex-wrap items-end px-4 py-2 gap-4">
                                     <Input
                                         type="text"
                                         label="Phone Number"
@@ -65,14 +69,14 @@ export default function BookingModal({ className, selectedService }) {
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         autoFocus
                                         isClearable
                                         isRequired
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                     />
                                 </div>
-                                <div className="flex w-full flex-wrap items-end gap-4 px-4 py-2 mb-3">
+                                <div className="flex w-full flex-wrap items-end gap-4 px-4 py-2">
                                     <Input
                                         type="text"
                                         label="Date"
@@ -81,11 +85,13 @@ export default function BookingModal({ className, selectedService }) {
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         isClearable
                                         isRequired
                                         onChange={(e) => setDate(e.target.value)}
                                     />
+                                </div>
+                                <div className="flex w-full flex-wrap items-end gap-4 px-4 py-2">
                                     <Input
                                         type="text"
                                         label="Time"
@@ -94,13 +100,14 @@ export default function BookingModal({ className, selectedService }) {
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         isClearable
                                         isRequired
                                         onChange={(e) => setTime(e.target.value)}
                                     />
                                 </div>
-                                <div className="flex w-full flex-wrap items-end gap-4 px-4 py-2 mb-3">
+
+                                <div className="flex w-full flex-wrap items-end gap-4 px-4 py-2">
                                     <Textarea
                                         type="text"
                                         label="Description"
@@ -124,7 +131,7 @@ export default function BookingModal({ className, selectedService }) {
                                     <Button color="danger" variant="bordered" onPress={onClose}>
                                         Cancel
                                     </Button>
-                                    <Button className="bg-black text-white" onPress={() => { handleNewBooking(); onClose(); navigateToBookingPage(); }}>
+                                    <Button className="bg-black text-white" onPress={() => { handleNewBooking(); onClose(); }}>
                                         Submit
                                     </Button>
                                 </ModalFooter>

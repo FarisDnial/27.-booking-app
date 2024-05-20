@@ -1,20 +1,33 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, Button, ModalFooter, useDisclosure, Input } from "@nextui-org/react";
-import axios from "axios";
+// 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-import { useState } from "react";
 
 export default function App() {
-    const url = "https://279aa7f6-f772-4f73-a6e0-19eae612c706-00-q1e0ghxworay.kirk.replit.dev";
+    // const url = "https://279aa7f6-f772-4f73-a6e0-19eae612c706-00-q1e0ghxworay.kirk.replit.dev";
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+    const auth = getAuth();
+    const { currentUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (currentUser) {
+            navigate("/dashboard")
+        }
+    }, [currentUser, navigate])
+
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${url}/signup`, { username, password });
-            console.log(res.data);
+            const res = await createUserWithEmailAndPassword(auth, username, password);
+            console.log(res.user);
         } catch (error) {
             console.error(error);
         }

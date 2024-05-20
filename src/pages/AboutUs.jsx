@@ -1,13 +1,41 @@
-import Carousel from "./Carousel"
+import { Col, Row } from "react-bootstrap";
+import Sidebar from "../components/Layout/Sidebar";
+import { Button } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
-export default function AboutUs() {
+export default function Dashboard() {
+    const navigate = useNavigate();
+
+    const navigateToBookingPage = () => navigate("/bookingpage")
+    return (
+        <>
+            <Row>
+                <Col sm={2} style={{ width: "22rem" }}>
+                    <Sidebar />
+                </Col>
+                <Col sm={10} style={{ width: "128rem" }}>
+                    <Row className="py-5 px-5 justify-content-center align-items-center">
+                        <AboutUs navigateToBookingPage={navigateToBookingPage} />
+                        <div className=" py-5 flex justify-end">
+                            <Button size="lg" className="bg-black text-white" onPress={navigateToBookingPage}>Book Your Session With Us!</Button>
+                        </div>
+
+                    </Row>
+                </Col>
+            </Row>
+
+        </>
+    );
+}
+
+export function AboutUs({ navigateToBookingPage }) {
     const image1 = 'https://media.macphun.com/img/uploads/macphun/blog/2262/_1.jpg?q=75&w=1710&h=906&resize=cover'
     const image3 = 'https://images.unsplash.com/photo-1547619292-870fe4aeadb8?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     const image2 = 'https://metalbees.com/wp-content/uploads/2022/03/Raw-3-1.webp'
 
     return (
         <>
-            <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "700px" }}>
+            <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 rounded-lg" style={{ height: "400px" }}>
                 <img
                     src={image1}
                     alt=""
@@ -23,11 +51,16 @@ export default function AboutUs() {
                 </div>
             </div>
             <br />
-            <Carousel />
             <br />
+
             <div>
                 <div>
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div className=" mt-4 flex justify-end">
+                        <Button size="lg" className="bg-black text-white" onPress={navigateToBookingPage}>
+                            Book Your Session With Us!
+                        </Button>
+                    </div>
+                    <div className="mx-auto max-w-2xl py-24" >
                         <div className="text-center">
                             <h2 className="display-3 fw-bolder text-capitalize text-center">
                                 Let's Capture Your Moments
@@ -38,7 +71,7 @@ export default function AboutUs() {
                         </div>
                     </div>
                 </div>
-                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "700px" }}>
+                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 rounded-lg" style={{ height: "400px" }}>
 
                     <img
                         src={image2}
@@ -47,7 +80,7 @@ export default function AboutUs() {
                     />
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl lg:mx-0" style={{ position: "absolute", right: "60px", top: "50%", transform: "translateY(-50%)" }}>
-                            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                            <h2 className="text-4xl font-bold tracking-tight text-white">
                                 Every photograph is a story waiting to be told.
                             </h2>
                         </div>
@@ -57,7 +90,7 @@ export default function AboutUs() {
             <br />
             <div>
                 <div>
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div className="mx-auto max-w-2xl py-24">
                         <div className="text-center">
                             <h2 className="display-3 fw-bolder text-capitalize text-center">
                                 Work with us
@@ -68,7 +101,7 @@ export default function AboutUs() {
                         </div>
                     </div>
                 </div>
-                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "700px" }}>
+                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 rounded-lg" style={{ height: "400px" }}>
                     <img
                         src={image3}
                         alt=""
@@ -76,7 +109,7 @@ export default function AboutUs() {
                     />
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl lg:mx-0" style={{ position: "absolute", left: "60px", top: "50%", transform: "translateY(-50%)" }}>
-                            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                            <h2 className="text-4xl font-bold tracking-tight text-white">
                                 Together, let's frame the future with creativity and innovation.</h2>
                         </div>
                     </div>

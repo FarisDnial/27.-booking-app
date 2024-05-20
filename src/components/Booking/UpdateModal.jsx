@@ -1,9 +1,10 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Textarea } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Textarea, Tooltip } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBooking } from "../../features/books/bookingSlice";
 import { AiOutlineEdit } from "react-icons/ai";
+import { AuthContext } from "../AuthProvider";
 
 
 export default function UpdateModal({ bookingsId, service, description, date, time, phoneNumber }) {
@@ -13,10 +14,13 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
     const [newTime, setNewTime] = useState(time);
     const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
 
+    const { currentUser } = useContext(AuthContext);
+    const userId = currentUser.uid;
+
     const dispatch = useDispatch();
 
     const handleUpdate = () => {
-        dispatch(updateBooking({ bookingsId, service, newDescription, newDate, newTime, newPhoneNumber }));
+        dispatch(updateBooking({ userId, bookingsId, service, newDescription, newDate, newTime, newPhoneNumber }));
         setNewDescription(description);
         setNewDate(date);
         setNewTime(time);
@@ -27,14 +31,33 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
 
     return (
         <>
-            <Button onPress={onOpen} className="border-white text-black" variant="bordered" radius="sm" startContent={<AiOutlineEdit style={{ fontSize: '20px' }} />}>
+            <Tooltip content="Update Booking" delay={0} closeDelay={0} motionProps={{
+                variants: {
+                    exit: {
+                        opacity: 0,
+                        transition: {
+                            duration: 0.1,
+                            ease: "easeIn",
+                        }
+                    },
+                    enter: {
+                        opacity: 1,
+                        transition: {
+                            duration: 0.15,
+                            ease: "easeOut",
+                        }
+                    },
+                },
+            }}>
+                <Button onPress={onOpen} className="border-white text-black" variant="bordered" radius="sm" startContent={<AiOutlineEdit style={{ fontSize: '20px' }} />}>
+                </Button>
+            </Tooltip>
 
-            </Button>
             <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
-                size="4xl"
+                size="2xl"
                 backdrop="opaque"
                 classNames={{
                     backdrop: "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20"
@@ -45,7 +68,7 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
                         <>
                             <ModalHeader className="flex flex-col gap-1 px-5" style={{ fontSize: '30px' }}>{service} Services</ModalHeader>
                             <ModalBody>
-                                <div className="flex w-full flex-wrap items-end px-4 py-2 gap-4 mb-3">
+                                <div className="flex w-full flex-wrap items-end px-4 py-2 gap-4">
                                     <Input
                                         type="text"
                                         label="Selected Services"
@@ -54,9 +77,11 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         isReadOnly
                                     />
+                                </div>
+                                <div className="flex w-full flex-wrap items-end px-4 py-2 gap-4 mb-3">
                                     <Input
                                         type="text"
                                         label="Phone Number"
@@ -65,7 +90,7 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         autoFocus
                                         defaultValue={phoneNumber}
                                         isClearable
@@ -82,12 +107,14 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         defaultValue={date}
                                         isClearable
                                         isRequired
                                         onChange={(e) => setNewDate(e.target.value)}
                                     />
+                                </div>
+                                <div className="flex w-full flex-wrap items-end gap-4 px-4 py-2 mb-3">
                                     <Input
                                         type="text"
                                         label="Time"
@@ -96,7 +123,7 @@ export default function UpdateModal({ bookingsId, service, description, date, ti
                                         variant="bordered"
                                         size="lg"
                                         color="default"
-                                        className="max-w-sm"
+                                        className="max-w"
                                         defaultValue={time}
                                         isClearable
                                         isRequired

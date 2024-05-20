@@ -1,17 +1,26 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { TbLogout2 } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
 
-
-
-
-export default function App({ handleLogout }) {
+export default function App() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { currentUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    //check if current user login
+    if (!currentUser) {
+        navigate("/home"); // redirect to home if user not login
+    }
+    const handleLogout = () => {
+        auth.signOut();
+    };
 
     return (
         <>
-            {/* <Button onPress={onOpen} className="border-black text-black mt-4" variant="shadow" radius="sm" startContent={<TbLogout2 />}>
-                Sign Out
-            </Button> */}
             <Button onPress={onOpen} className="border-white text-white mt-4" variant="bordered" radius="sm" startContent={<TbLogout2 style={{ fontSize: '20px' }} />}>
                 Sign Out
             </Button>
