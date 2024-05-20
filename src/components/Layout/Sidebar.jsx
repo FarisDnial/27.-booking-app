@@ -17,7 +17,7 @@ export default function SidebarWithCta() {
         <>
             <Card className="fixed top-0 left-0 right-0 bottom-0 overflow-auto w-full max-w-[20rem] p-4 bg-black border-none" style={{ borderRadius: '0', width: "100%" }}>
                 <div className="mb-2 flex items-center gap-4 py-4 px-5">
-                    <img src="src/assets/Lensify3.png" alt="lensify" className="h-15 w-auto" />
+                    <img src="https://firebasestorage.googleapis.com/v0/b/twitter-app-8a21a.appspot.com/o/posts%2FLensify3.png?alt=media&token=b25e1b92-72ff-48e2-ae06-e01c124f0fe1" alt="lensify" className="h-15 w-auto" />
                 </div>
                 <List>
                     <ListItem className="text-white" onClick={navigateToAboutUs}>
