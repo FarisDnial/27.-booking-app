@@ -17,7 +17,7 @@ export default function Dashboard() {
                     <Row className="py-5 px-5 justify-content-center align-items-center">
                         <AboutUs navigateToBookingPage={navigateToBookingPage} />
                         <div className=" py-5 flex justify-end">
-                            <Button size="lg" className="bg-black text-white" href="#service-list">Book Your Session With Us!</Button>
+                            <Button size="lg" className="bg-black text-white" onPress={navigateToBookingPage}>Book Your Session With Us!</Button>
                         </div>
 
                     </Row>

@@ -38,7 +38,7 @@ export default function LoginModal({ className }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
-                size="4xl"
+                size="2xl"
                 backdrop="opaque"
                 classNames={{
                     backdrop: "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20"

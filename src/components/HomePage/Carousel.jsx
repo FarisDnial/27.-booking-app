@@ -56,7 +56,7 @@ export default function CarouselImage() {
     return (
         <>
             <div id="our-services">
-                <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                <div className="mx-auto max-w-2xl py-32">
                     <div className="text-center">
                         <h2 className="display-3 fw-bolder text-capitalize text-center">
                             Unveil Your Memories with Lensify
@@ -69,7 +69,7 @@ export default function CarouselImage() {
             </div>
             <Carousel>
                 {serviceDetail.map((service, index) => (
-                    <Carousel.Item key={index} style={{ height: '700px' }} interval={service.interval}>
+                    <Carousel.Item key={index} style={{ height: '550px' }} interval={service.interval}>
                         <Image src={service.image} alt={service.name} className="d-block w-100" style={{ height: '100%', objectFit: 'cover', filter: 'brightness(0.6)' }} />
                         <Carousel.Caption className="top-50 start-50 translate-middle">
                             <h1 className="display-3 mt-5 fw-bolder text-capitalize">{service.name}</h1>

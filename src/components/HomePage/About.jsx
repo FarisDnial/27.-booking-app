@@ -7,7 +7,7 @@ export default function AboutUs() {
 
     return (
         <>
-            <div id="about-us" className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "700px" }}>
+            <div id="about-us" className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "550px" }}>
                 <img
                     src={image1}
                     alt=""
@@ -27,7 +27,7 @@ export default function AboutUs() {
             <br />
             <div>
                 <div>
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div className="mx-auto max-w-2xl py-32">
                         <div className="text-center">
                             <h2 className="display-3 fw-bolder text-capitalize text-center">
                                 Let's Capture Your Moments
@@ -38,7 +38,7 @@ export default function AboutUs() {
                         </div>
                     </div>
                 </div>
-                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "700px" }}>
+                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "550px" }}>
 
                     <img
                         src={image2}
@@ -57,7 +57,7 @@ export default function AboutUs() {
             <br />
             <div>
                 <div>
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div className="mx-auto max-w-2xl py-32" >
                         <div className="text-center">
                             <h2 className="display-3 fw-bolder text-capitalize text-center">
                                 Work with us
@@ -68,7 +68,7 @@ export default function AboutUs() {
                         </div>
                     </div>
                 </div>
-                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "700px" }}>
+                <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" style={{ height: "550px" }}>
                     <img
                         src={image3}
                         alt=""
