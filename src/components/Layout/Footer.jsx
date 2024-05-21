@@ -9,7 +9,7 @@ export default function FooterWithLogo() {
                     <li>
                         <Typography
                             as="a"
-                            href="#"
+                            href="#about-us"
                             color="white"
                             className="font-normal"
                         >
@@ -19,7 +19,7 @@ export default function FooterWithLogo() {
                     <li>
                         <Typography
                             as="a"
-                            href="#"
+                            href="#our-services"
                             color="white"
                             className="font-normal"
                         >
@@ -29,7 +29,7 @@ export default function FooterWithLogo() {
                     <li>
                         <Typography
                             as="a"
-                            href="#"
+                            href="#our-team"
                             color="white"
                             className="font-normal"
                         >

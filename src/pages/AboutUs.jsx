@@ -17,7 +17,7 @@ export default function Dashboard() {
                     <Row className="py-5 px-5 justify-content-center align-items-center">
                         <AboutUs navigateToBookingPage={navigateToBookingPage} />
                         <div className=" py-5 flex justify-end">
-                            <Button size="lg" className="bg-black text-white" onPress={navigateToBookingPage}>Book Your Session With Us!</Button>
+                            <Button size="lg" className="bg-black text-white" href="#service-list">Book Your Session With Us!</Button>
                         </div>
 
                     </Row>
@@ -35,7 +35,7 @@ export function AboutUs({ navigateToBookingPage }) {
 
     return (
         <>
-            <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 rounded-lg" style={{ height: "400px" }}>
+            <div id="about-Us" className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 rounded-lg" style={{ height: "400px" }}>
                 <img
                     src={image1}
                     alt=""

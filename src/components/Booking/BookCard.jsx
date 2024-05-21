@@ -11,9 +11,9 @@ import BookingModal from "./BookingModal";
 export default function BookCard() {
     return (
         <>
-            <div className="flex flex-wrap gap-4 px-5 py-5" style={{ marginLeft: "100px" }}>
+            <div id="service-list" className="flex flex-wrap gap-4 px-3 py-5" style={{ marginLeft: "100px" }}>
                 {services.map((service, index) => (
-                    <Card key={index} className="w-full max-w-[26rem] shadow-lg mr-5">
+                    <Card key={index} className="w-full max-w-[26rem] shadow-lg mr-3">
                         <CardHeader floated={false} color="blue-gray">
                             <img
 

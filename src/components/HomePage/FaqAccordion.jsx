@@ -46,7 +46,7 @@ const faqs = [
 
 export default function FaqAccordian() {
     return (
-        <Container>
+        <Container id="faq">
             <h2 className="my-5 mx-3 tracking-tight text-black sm:text-4xl">Frequently Ask Questions</h2>
             <Accordion variant="splitted">
                 {faqs.map((faq, index) => (

@@ -7,11 +7,11 @@ import {
 import LoginModal from "./LoginModal";
 
 const navigation = [
-    { name: 'About Us', href: '#' },
-    { name: 'Our Services', href: '#' },
-    { name: 'Our Team', href: '#' },
+    { name: 'About Us', href: '#about-us' },
+    { name: 'Our Services', href: '#our-services' },
+    { name: 'Our Team', href: '#our-team' },
     { name: 'Contact', href: '#' },
-    { name: 'FAQs', href: '#' }
+    { name: 'FAQs', href: '#faq' }
 ]
 
 
