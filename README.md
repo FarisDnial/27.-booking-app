@@ -44,7 +44,7 @@ Contributions are welcome! Please fork this repository and submit a pull request
 - [Redux](https://redux.js.org/)
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
-- [PostgreSQL](https://www.postgresql.org/)
+- [Firebase](https://firebase.google.com/)
 - [NextUI](https://nextui.org/)
 - [Material Tailwind](https://www.material-tailwind.com/)
 - [Bootstrap](https://getbootstrap.com/)
